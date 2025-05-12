@@ -8,7 +8,7 @@ class KahootGameController(http.Controller):
 
     @http.route('/kahoot', type='http', auth='public', website=True)
     def kahoot_page(self, **kw):
-        _logger.info("🔹 Entrando en /kahoot correctamente")
+        _logger.info("Entrando en /kahoot correctamente")
         return request.render('theme_ninja_quiz.kahoot_page', {})
 
     @http.route('/kahoot/join', type='http', auth='public', methods=['POST'], website=True, csrf=False)
@@ -17,11 +17,13 @@ class KahootGameController(http.Controller):
         try:
             pin = int(pin)
         except (ValueError, TypeError):
+            _logger.warning(f'PIN inválido recibido: {pin}')
             return request.render('theme_ninja_quiz.kahoot_page', {
                 'error': 'El PIN debe ser un número.'
             })
 
         game = request.env['survey.game.session'].sudo().search([('id', '=', pin)], limit=1)
+        _logger.info(f"PIN recibido: {pin} | Resultado búsqueda: {game}")
 
         if game:
             return request.redirect(f'/kahoot/play/{game.id}')
@@ -38,4 +40,3 @@ class KahootGameController(http.Controller):
         return request.render('theme_ninja_quiz.kahoot_play_page', {
             'game': game,
         })
-
