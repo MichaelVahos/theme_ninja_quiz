@@ -1,0 +1,22 @@
+<odoo>
+  <template id="kahoot_page" name="Kahoot Page">
+    <t t-call="website.layout">
+      <div class="o_container">
+        <section class="kahoot-wrapper">
+          <h1>Bienvenido a Ninja Quiz</h1>
+          <p>Ingresa tu PIN para unirte al juego</p>
+
+          <t t-if="error">
+            <p style="color: red;"><t t-esc="error"/></p>
+          </t>
+
+          <form action="/kahoot/join" method="POST">
+            <input type="text" name="pin" placeholder="PIN del juego" required="required"/>
+            <button type="submit">Unirse</button>
+          </form>
+        </section>
+      </div>
+    </t>
+  </template>
+</odoo>
+

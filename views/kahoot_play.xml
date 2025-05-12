@@ -1,0 +1,27 @@
+<odoo>
+  <template id="kahoot_play_page" name="Kahoot Play Page">
+    <t t-call="website.layout">
+      <div class="o_container">
+        <section class="kahoot-wrapper">
+          <h1>¡Bienvenido al juego!</h1>
+
+          <t t-if="game">
+            <p>Juego ID: <t t-esc="game.id" /></p>
+            <t t-if="game.survey_id">
+              <p>Nombre del quiz: <t t-esc="game.survey_id.title" /></p>
+            </t>
+            <t t-else="">
+              <p>No se encontró información del quiz.</p>
+            </t>
+          </t>
+          <t t-else="">
+            <p>Error: no se encontró el juego.</p>
+          </t>
+
+          <p>Esperando a que el juego comience...</p>
+        </section>
+      </div>
+    </t>
+  </template>
+</odoo>
+
