@@ -3,33 +3,31 @@
     <t t-call="website.layout">
       <div class="o_container">
         <section class="kahoot-wrapper">
-    <h1>¡Bienvenido al juego!</h1>
+          <h1>¡Bienvenido al juego!</h1>
 
-      <t t-if="game">
-        <p>Juego ID: <t t-esc="game.id"/></p>
-        <p>Nombre del quiz: <t t-esc="game.survey_id.title"/></p>
+          <t t-if="game">
+            <p>Juego ID: <t t-esc="game.id"/></p>
+            <p>Nombre del quiz: <t t-esc="game.survey_id.title"/></p>
 
-        <t t-if="game.current_question_id">
-          <div class="question">
-            <h2><t t-esc="game.current_question_id.question"/></h2>
-            <ul>
-              <t t-foreach="game.current_question_id.suggested_answer_ids" t-as="answer">
-                <li><button><t t-esc="answer.value"/></button></li>
-              </t>
-            </ul>
-          </div>
-        </t>
-        <t t-else="">
-          <p>Esperando a que comience la primera pregunta...</p>
-        </t>
-      </t>
-      <t t-else="">
-        <p>Error: no se encontró el juego.</p>
-      </t>
-    </section>
-
+            <t t-if="game.current_question_id">
+              <div class="question">
+                <h2><t t-esc="game.current_question_id.title"/></h2>
+                <ul>
+                  <t t-foreach="game.current_question_id.suggested_answer_ids" t-as="answer">
+                    <li><button><t t-esc="answer.value"/></button></li>
+                  </t>
+                </ul>
+              </div>
+            </t>
+            <t t-else="">
+              <p>Esperando a que comience la primera pregunta...</p>
+            </t>
+          </t>
+          <t t-else="">
+            <p>Error: no se encontró el juego.</p>
+          </t>
+        </section>
       </div>
     </t>
   </template>
 </odoo>
-
