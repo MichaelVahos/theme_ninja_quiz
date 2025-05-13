@@ -8,7 +8,8 @@
     "depends": ["web", "website", "survey"],
     "data": [
         "views/kahoot_page.xml",
-        "views/kahoot_play.xml"
+        "views/kahoot_play.xml",
+        "views/kahoot_game_page.xml",
     ],
     "assets": {
         "web.assets_frontend": [

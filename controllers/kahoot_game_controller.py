@@ -40,3 +40,29 @@ class KahootGameController(http.Controller):
         return request.render('theme_ninja_quiz.kahoot_play_page', {
             'game': game,
         })
+
+    @http.route('/kahoot/waiting/<int:game_id>', type='http', auth='public', website=True)
+    def kahoot_waiting(self, game_id):
+        game = request.env['survey.game.session'].sudo().browse(game_id)
+        if not game.exists():
+            return request.not_found()
+        return request.render('theme_ninja_quiz.kahoot_waiting_page', {
+            'game': game,
+        })
+
+    @http.route('/kahoot/submit_answer', type='json', auth='public', csrf=False)
+    def submit_answer(self, participant_id, question_id, answer_id):
+        participant = request.env['survey.game.participant'].sudo().browse(participant_id)
+        if not participant.exists():
+            return {'status': 'error', 'message': 'Participante no válido.'}
+
+        request.env['survey.game.participant.answer'].sudo().create({
+            'participant_id': participant_id,
+            'question_id': question_id,
+            'answer_id': answer_id
+        })
+
+        return {
+            'status': 'ok',
+            'redirect': f'/kahoot/waiting/{participant.session_id.id}'
+        }
