@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
   <template id="kahoot_play_page" name="Kahoot Play Page">
     <t t-call="website.layout">
@@ -16,6 +17,7 @@
                   <t t-foreach="game.current_question_id.suggested_answer_ids" t-as="answer">
                     <li>
                       <button 
+                        type="button"
                         t-att-data-answer-id="answer.id"
                         t-att-data-question-id="game.current_question_id.id"
                         t-att-data-participant-id="participant_id"
@@ -36,34 +38,7 @@
           </t>
         </section>
       </div>
-
-      <script>
-        function submitAnswer(button) {
-          const answerId = button.getAttribute('data-answer-id');
-          const questionId = button.getAttribute('data-question-id');
-          const participantId = button.getAttribute('data-participant-id');
-
-          fetch('/kahoot/submit_answer', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-              answer_id: parseInt(answerId),
-              question_id: parseInt(questionId),
-              participant_id: parseInt(participantId)
-            })
-          })
-          .then(res => res.json())
-          .then(data => {
-            if (data.status === 'ok') {
-              alert("✅ Respuesta registrada");
-            } else {
-              alert("❌ Error: " + data.message);
-            }
-          });
-        }
-      </script>
+      <t t-call-assets="web.assets_frontend" t-js="true"/>
     </t>
   </template>
 </odoo>
-
-
