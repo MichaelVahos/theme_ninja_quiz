@@ -1,6 +1,3 @@
-// File: theme_ninja_quiz/static/src/js/kahoot_participant.js
-
-/** OWL Component to play survey like Kahoot */
 import { Component, onWillStart, useState } from '@odoo/owl';
 import { xml } from '@odoo/owl';
 import { useRef } from '@odoo/owl';
@@ -73,4 +70,3 @@ export class KahootParticipant extends Component {
 }
 
 KahootParticipant.props = ['surveyId', 'inputId'];
-

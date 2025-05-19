@@ -1,44 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-  <template id="kahoot_play_page" name="Kahoot Play Page">
-    <t t-call="website.layout">
-      <div class="o_container">
-        <section class="kahoot-wrapper">
-          <h1>¡Bienvenido al juego!</h1>
+<t t-name="theme_ninja_quiz.kahoot_play_page" t-inherit="website.layout" t-inherit-mode="primary">
+  <t t-set="input_id" t-value="user_input.id"/>
+  <t t-set="survey_id" t-value="user_input.survey_id.id"/>
 
-          <t t-if="game">
-            <p>Juego ID: <t t-esc="game.id"/></p>
-            <p>Nombre del quiz: <t t-esc="game.survey_id.title"/></p>
-
-            <t t-if="game.current_question_id">
-              <div class="question">
-                <h2><t t-esc="game.current_question_id.title"/></h2>
-                <ul>
-                  <t t-foreach="game.current_question_id.suggested_answer_ids" t-as="answer">
-                    <li>
-                      <button 
-                        type="button"
-                        t-att-data-answer-id="answer.id"
-                        t-att-data-question-id="game.current_question_id.id"
-                        t-att-data-participant-id="participant_id"
-                        onclick="submitAnswer(this)">
-                        <t t-esc="answer.value"/>
-                      </button>
-                    </li>
-                  </t>
-                </ul>
-              </div>
-            </t>
-            <t t-else="">
-              <p>Esperando a que comience la primera pregunta...</p>
-            </t>
-          </t>
-          <t t-else="">
-            <p>Error: no se encontró el juego.</p>
-          </t>
-        </section>
-      </div>
-      <t t-call-assets="web.assets_frontend" t-js="true"/>
-    </t>
-  </template>
-</odoo>
+  <div class="o_container">
+    <t t-component="ninja_quiz.KahootPlayer" inputId="input_id" surveyId="survey_id"/>
+  </div>
+</t>
