@@ -1,8 +1,0 @@
-<t t-name="theme_ninja_quiz.kahoot_play_page" t-inherit="website.layout" t-inherit-mode="primary">
-  <t t-set="input_id" t-value="user_input.id"/>
-  <t t-set="survey_id" t-value="user_input.survey_id.id"/>
-
-  <div class="o_container">
-    <t t-component="ninja_quiz.KahootPlayer" inputId="input_id" surveyId="survey_id"/>
-  </div>
-</t>

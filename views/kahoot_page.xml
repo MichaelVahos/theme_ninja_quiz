@@ -1,13 +1,9 @@
 <odoo>
-  <template id="kahoot_page" name="Kahoot Participant Page">
-    <t t-call="website.layout">
-      <div class="container my-5">
-        <h1>¡Bienvenido a Ninja Quiz!</h1>
-        <div id="kahoot_participant_root"
-             data-survey-id="1"
-             data-input-id="42"
-        ></div>
-      </div>
-    </t>
-  </template>
+    <template id="kahoot_page" name="Kahoot OWL Play Page" inherit_id="website.layout">
+        <xpath expr="//main" position="inside">
+            <div class="container my-5">
+                <t t-component="ninja_quiz.KahootPlayer" t-props="{'surveyId': survey_id}"/>
+            </div>
+        </xpath>
+    </template>
 </odoo>
