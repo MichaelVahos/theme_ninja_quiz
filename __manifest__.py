@@ -4,7 +4,7 @@
     'author': 'Michael Vahos',
     'category': 'Theme',
     'license': 'LGPL-3',
-    'depends': ['website', 'ninja_quiz'],
+    'depends': ['website', 'web', 'ninja_quiz'],
     'data': [
         'views/kahoot_page.xml',
     ],
