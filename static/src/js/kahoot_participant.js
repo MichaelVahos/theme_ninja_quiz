@@ -18,11 +18,15 @@ export class KahootParticipant extends Component {
             try {
                 const surveyId = parseInt(this.props.surveyId);
                 const inputId = parseInt(this.props.inputId);
+                
+                // Llamada RPC para obtener la pregunta y las respuestas
                 const result = await rpc.query({
                     model: 'survey.user_input',
                     method: 'get_current_question_and_answers',
                     args: [surveyId, inputId],
                 });
+                
+                // Asigna los datos obtenidos a los estados
                 this.state.question = result.question;
                 this.state.answers = result.answers;
             } catch (e) {
@@ -35,12 +39,13 @@ export class KahootParticipant extends Component {
 
     async submitAnswer(answerId) {
         try {
+            // Envía la respuesta seleccionada
             await rpc.query({
                 model: 'survey.user_input',
                 method: 'submit_answer',
                 args: [this.props.inputId, this.state.question.id, answerId],
             });
-            window.location.reload();
+            window.location.reload(); // Recarga la página después de enviar la respuesta
         } catch (e) {
             alert('No se pudo enviar la respuesta');
         }
