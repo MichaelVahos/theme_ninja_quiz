@@ -6,7 +6,7 @@
     'license': 'LGPL-3',
     'depends': ['website', 'web', 'ninja_quiz'],
     'data': [
-        'views/kahoot_page.xml',
+        'views/kahoot_page.xml',  
     ],
     'installable': True,
     'auto_install': False,
