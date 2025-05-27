@@ -6,13 +6,13 @@
     'license': 'LGPL-3',
     'depends': ['website', 'web', 'ninja_quiz'],
     'data': [
-        'views/kahoot_page.xml',  
+        'views/kahoot_page.xml'
     ],
     'assets': {
         'web.assets_frontend': [
-            'ninja_quiz/static/src/components/KahootPlayer/KahootPlayer.js',  
-        ],
+            'ninja_quiz/static/src/components/KahootPlayer/KahootPlayer.js'
+        ]
     },
     'installable': True,
-    'auto_install': False,
+    'auto_install': False
 }
