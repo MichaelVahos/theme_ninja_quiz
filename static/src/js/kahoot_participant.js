@@ -45,7 +45,7 @@ export class KahootParticipant extends Component {
                 method: 'submit_answer',
                 args: [this.props.inputId, this.state.question.id, answerId],
             });
-            window.location.reload(); // Recarga la página después de enviar la respuesta
+            window.location.reload(); //Recarga la página después de enviar la respuesta
         } catch (e) {
             alert('No se pudo enviar la respuesta');
         }
