@@ -19,7 +19,7 @@ export class KahootParticipant extends Component {
                 const surveyId = parseInt(this.props.surveyId);
                 const inputId = parseInt(this.props.inputId);
                 
-                // Llamada RPC para obtener la pregunta y las respuestas
+                //Llamada RPC para obtener la pregunta y las respuestas
                 const result = await rpc.query({
                     model: 'survey.user_input',
                     method: 'get_current_question_and_answers',
@@ -75,3 +75,4 @@ export class KahootParticipant extends Component {
 }
 
 KahootParticipant.props = ['surveyId', 'inputId'];
+//sin avances
